@@ -11,13 +11,13 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestWithFileSource extends TestBase{
     @CsvFileSource (resources = "/testData.csv")
-    @DisplayName("Тесты на сайт авито")
+    @DisplayName("Тест на наличие моделей авто в соответствии с маркой")
 
     @ParameterizedTest(name = "При поиске марки {0} на странице отображается модель {1}")
 
     @Tags ({
         @Tag("Blocker"),
-        @Tag("AvitoTets")
+        @Tag("ComplianceTest")
     })
 
 
@@ -28,7 +28,6 @@ public class TestWithFileSource extends TestBase{
         open("https://www.avito.ru/");
         $(".index-suggest-zkzTd").click();
         $(".input-input-Zpzc1").setValue(CarBrand).pressEnter();
-        sleep(2000);
         $(".popular-rubricator-root-Mo5uC").shouldHave(Condition.text(CarModel));
 
 
