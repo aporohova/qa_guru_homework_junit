@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,7 +16,7 @@ public class TestWithMethodSource extends TestBase{
 
     static Stream<Arguments> checkMenuPage() {
         return Stream.of(
-                Arguments.of(List.of("Бытовая техника", "Красота и здоровье", "Смартфоны и фототехника", "ТВ, консоли и аудио", "ПК, ноутбуки, периферия", "Комплектующие для ПК", "Офис и мебель", "Сетевое оборудование", "Отдых и развлечения", "Инструмент и стройка", "Садовая техника", "Дом, декор и посуда", "Автотовары", "Аксессуары и услуги")));
+    Arguments.of(List.of("Акции", "Магазины", "Покупателям", "Юридическим лицам", "Клуб DNS")));
     }
 
 
@@ -27,7 +26,7 @@ public class TestWithMethodSource extends TestBase{
     void checkMenuPage (List<String> pages)
     {
        open("https://www.dns-shop.ru/");
-       $(".homepage__catalog").shouldHave(CollectionCondition.containExactTextsCaseSensitive(pages));
+       $$(".header-top-menu__common-item").filter(Condition.visible).shouldHave(CollectionCondition.containExactTextsCaseSensitive(pages));
     }
 
 }
